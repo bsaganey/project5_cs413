@@ -1,0 +1,17 @@
+{
+  "name": "Portal Hotel",
+  "description": "Portal Hotel",
+  "version": "0.0.0.1",
+  "manifest_version": 2,
+  "icons": {
+    "128": "icon.png"
+  },
+  "app": {
+    "urls": [
+      "http://www.cefns.nau.edu/~bs366/"
+    ],
+    "launch": {
+      "web_url": "http://www.cefns.nau.edu/~bs366/"
+    }
+  }
+}

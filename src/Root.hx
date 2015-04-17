@@ -10,6 +10,8 @@ import starling.events.TouchPhase;
 import starling.events.Event;
 import starling.utils.RectangleUtil;
 import flash.geom.Rectangle;
+import starling.textures.Texture;
+
 
 import Tilemap;
 
@@ -17,6 +19,7 @@ class Root extends Sprite {
 
     public static var assets:AssetManager;
     public var ninja:Image;
+    public var portal:Image;
     
 	//For the tilemap
 	var tmx:Tilemap;
@@ -33,6 +36,8 @@ class Root extends Sprite {
 		assets.enqueue("assets/Bricks.png");
 
         assets.enqueue("assets/ninja.png");
+        assets.enqueue("assets/portal.png");
+        
         assets.loadQueue(function onProgress(ratio:Float) {
 
             if (ratio == 1) {
@@ -47,14 +52,22 @@ class Root extends Sprite {
                         ninja.x = 640;
                         ninja.y = 360;
                         
+                        portal = new Image(Root.assets.getTexture("portal"));
+                        portal.x = 10;
+                        portal.y = 10;
+                        
                         // Load tilemap
 						tmx = new Tilemap(Root.assets, "levelone");
 						addChild(tmx);
 						addChild(ninja);
+						addChild(portal);
 						
-						//if(checkCollision(ninja, tmx)){
-							
-       					//	}
+						
+						
+						//if(checkCollision(ninja, tmx._layers("collision"))){
+						//}
+							//tmx.image.att.source;
+					
                         
                         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, 
                         	function(event:KeyboardEvent){
@@ -80,12 +93,6 @@ class Root extends Sprite {
                         		trace("NINJA TOUCHED");
                         		
                         	});
-
-                        Starling.juggler.tween(ninja, 1.0, {
-                            transition: Transitions.EASE_OUT_BOUNCE,
-                                delay: 2.0,
-                                y: 250
-                                });
                                 
                         stage.addEventListener(Event.ENTER_FRAME, movecam);
 
