@@ -48,19 +48,20 @@ class Root extends Sprite {
                         alpha: 0,
                         onComplete: function() {
                         startup.removeChild(startup.loadingBitmap);
+                        
                         ninja = new Image(Root.assets.getTexture("ninja"));
                         ninja.x = 640;
                         ninja.y = 360;
                         
-                        portal = new Image(Root.assets.getTexture("portal"));
-                        portal.x = 10;
-                        portal.y = 10;
+                        //portal = new Image(Root.assets.getTexture("portal"));
+                        //portal.x = 10;
+                        //portal.y = 10;
                         
                         // Load tilemap
 						tmx = new Tilemap(Root.assets, "levelone");
 						addChild(tmx);
 						addChild(ninja);
-						addChild(portal);
+						//addChild(portal);
 						
 						
 						
