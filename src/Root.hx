@@ -34,6 +34,10 @@ class Root extends Sprite{
     	assets = new AssetManager();
     	
     	//tilemap
+		assets.enqueue("assets/floor.png");
+		assets.enqueue("assets/doorflip.png");
+		assets.enqueue("assets/door3.png");
+		assets.enqueue("assets/doorDown.png");
 		assets.enqueue("assets/Bricks.png");
 		assets.enqueue("assets/MainMap.tmx");
 
@@ -111,30 +115,27 @@ class Root extends Sprite{
 
 	// main level right bounds
 	public function level1RB(Image){
- // <object id="51" x="690" y="229" width="331" height="25"/>
-  //<object id="52" x="994" y="181" width="26" height="44"/>
-  
-
-
-
+	
 		//right bounds 
-		var Bound1 = new Rectangle(658,599, 27, 98);
-		var Bound2 = new Rectangle(991, 35 ,29, 78);
-		var Bound3 = new Rectangle(656,437,29,89);
-		var Bound4 = new Rectangle(659,229,25,122);
-		var Bound5 = new Rectangle(994,181,26,44);
+		var Bound1 = new Rectangle(659,229,25,122);
+		var Bound2 = new Rectangle(994,162,26,65);
+		var Bound3 = new Rectangle(991,35,29,78);
+		var Bound4 = new Rectangle(657,405,28,121);
+		var Bound5 = new Rectangle(656,581,28,201);
 		
 		//left bounds
-		var Bound6 = new Rectangle(354,68,25,233);
-		var Bound7 = new Rectangle(353,372,26,155);
-		var Bound8 = new Rectangle(354,598,25,100);
+		var Bound6 = new Rectangle(354,68,25,249);
+		var Bound7 = new Rectangle(353,372,26,169);
+		var Bound8 = new Rectangle(354,598,25,136);
 		
 		// top bounds
 		var Bound9 = new Rectangle(611,37,377,25);
-		var Bound10 = new Rectangle(354,36,186,26);
+		var Bound10 = new Rectangle(354,36,202,26);
 		
 		// bottom bounds
 		var Bound11 = new Rectangle(690,229,331,25);
+		var Bound12 = new Rectangle(384,706,272,33);
+		var Bound13 = new Rectangle(385,724,272,54);
 		
 		// right bounds
 		if(checkCollision(Image,Bound1)||checkCollision(Image,Bound2)||checkCollision(Image,Bound3)||
@@ -153,7 +154,7 @@ class Root extends Sprite{
 		}
 		
 		// bottom bounds
-		if(checkCollision(Image,Bound11)){
+		if(checkCollision(Image,Bound11)||checkCollision(Image,Bound12)||checkCollision(Image,Bound13)){
 			Image.y -= 10;
 		}
 	}
