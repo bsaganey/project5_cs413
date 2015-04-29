@@ -1,4 +1,6 @@
 import starling.display.Sprite;
+import starling.display.Button;
+//import starling.utils.deg2rad;
 import starling.utils.AssetManager;
 import starling.display.Image;
 import starling.core.Starling;
@@ -12,7 +14,6 @@ import starling.utils.RectangleUtil;
 import flash.geom.Rectangle;
 import starling.textures.Texture;
 
-
 import Tilemap;
 import Bounds;
 
@@ -21,7 +22,11 @@ class Root extends Sprite{
     public static var assets:AssetManager;
     public var ninja:Image;
     public var portal:Image;
-    
+	public var menu:Menu;
+    public var credits:Credits;
+	public var currentMenu:String;
+    public var currentButton:Int;
+	
 	//For the tilemap
 	var tmxMain:Tilemap;
 	var levelone:Tilemap;
@@ -106,11 +111,19 @@ class Root extends Sprite{
 		assets.enqueue("assets/doorDown.png");
 		assets.enqueue("assets/Bricks.png");
 		
-		assets.enqueue("assets/MainMap.tmx");
+		assets.enqueue("assets/tmxMain.tmx");
 		assets.enqueue("assets/levelone.tmx");
 
         assets.enqueue("assets/ninja.png");
         assets.enqueue("assets/portal.png");
+		
+		assets.enqueue("assets/startbutton.png");
+        assets.enqueue("assets/startbutton_selected.png");
+        assets.enqueue("assets/credits.png");
+        assets.enqueue("assets/backbutton.png");
+        assets.enqueue("assets/backbutton_selected.png");
+        assets.enqueue("assets/creditsbutton.png");
+        assets.enqueue("assets/creditsbutton_selected.png");
         
         assets.loadQueue(function onProgress(ratio:Float) {
 
@@ -122,62 +135,129 @@ class Root extends Sprite{
                         alpha: 0,
                         onComplete: function() {
                         startup.removeChild(startup.loadingBitmap);
-                        
-                        ninja = new Image(Root.assets.getTexture("ninja"));
-                        ninja.x = 600;
-                        ninja.y = 360;
-                        
-                        //portal = new Image(Root.assets.getTexture("portal"));
-                        //portal.x = 10;
-                        //portal.y = 10;
-                        
-                        // Load tilemap
-						tmxMain = new Tilemap(Root.assets, "tmxMain");
-						addChild(tmxMain);
-						addChild(ninja);
-						//addChild(portal);
-						
-                        
-                        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, 
-                        	function(event:KeyboardEvent){
-                        		//trace(event.keyCode);
-                        		if(event.keyCode == Keyboard.LEFT){
-                        			ninja.x -= 10;
-                        			//leveloneBoundsR(ninja);
-                        			}
-                        		
-                        		if(event.keyCode == Keyboard.RIGHT){
-                        			ninja.x += 10;
-                        			//leveloneBoundsL(ninja);
-                        			}
-                        		if(event.keyCode == Keyboard.UP){
-                        			ninja.y -= 10;
-                        			leveloneBoundsUP(ninja);
-                        		}
-                        		if(event.keyCode == Keyboard.DOWN){
-                        			ninja.y += 10;
-                        			//leveloneBoundsD(ninja);
-                        		}
-                        	level1RB(ninja);
-                        	doorEnter(ninja);
-                        	});
-                        	
-                        	ninja.addEventListener(TouchEvent.TOUCH, 
-                        	function(e:TouchEvent){
-                        		var touch = e.getTouch(stage, TouchPhase.BEGAN);
-                        		trace("NINJA TOUCHED");
-                        		
-                        	});
-                                
-                       // stage.addEventListener(Event.ENTER_FRAME, movecam);
-
                     }
-
                 });
+				addEventListener(Event.TRIGGERED, menuButtonClicked);
+				addMenu();
             }
 
         });
         
+    }
+	
+	public function startGame() {
+		//Tween out the menu
+        Starling.juggler.tween(getChildAt(0), 0.25, {
+                    transition: Transitions.EASE_OUT,
+                        delay: 0.0,
+                        alpha: 0.0,
+                        onComplete: function() {
+                            removeChildAt(0, true);
+							ninja = new Image(Root.assets.getTexture("ninja"));
+							ninja.x = 600;
+							ninja.y = 360;
+							ninja.pivotX = ninja.width  * 0.5;
+							ninja.pivotY = ninja.height * 0.5;
+		
+							//portal = new Image(Root.assets.getTexture("portal"));
+							//portal.x = 10;
+							//portal.y = 10;
+		
+							// Load tilemap
+							tmxMain = new Tilemap(Root.assets, "tmxMain");
+							addChild(tmxMain);
+							addChild(ninja);
+							//addChild(portal);
+							
+							
+							Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, 
+								function(event:KeyboardEvent){
+								//trace(event.keyCode);
+								if (event.keyCode == Keyboard.LEFT) {
+									//ninja.rotation = deg2rad(270);
+									ninja.x -= 10;
+									//leveloneBoundsR(ninja);
+									
+								}
+								
+								if (event.keyCode == Keyboard.RIGHT) {
+									//ninja.rotation = deg2rad(90);
+									ninja.x += 10;
+									//leveloneBoundsL(ninja);
+								}
+								if (event.keyCode == Keyboard.UP) {
+									//ninja.rotation = deg2rad(0);
+									ninja.y -= 10;
+									leveloneBoundsUP(ninja);
+								}
+								if (event.keyCode == Keyboard.DOWN) {
+									//ninja.rotation = deg2rad(180);
+									ninja.y += 10;
+									//leveloneBoundsD(ninja);
+								}
+							level1RB(ninja);
+							doorEnter(ninja);
+							});
+							//stage.addEventListener(Event.ENTER_FRAME, movecam);
+                        }
+        });
+	
+	}
+	
+	public function menuButtonClicked(event:Event) {
+        var button = cast(event.target, Button);
+        if(button.name == "start") {
+            startGame();
+        } 
+        else if(button.name == "credits") {
+            showCredits();
+        }  
+        else if(button.name == "back") {
+            Starling.juggler.tween(getChildAt(0), .25, {
+                    transition: Transitions.EASE_OUT,
+                        delay: 0.0,
+                        alpha: 0.0,
+                        onComplete: function() {
+                            removeChildAt(0,true);
+                            }
+        
+            });
+            addMenu();
+        }
+    }
+	
+	public function addMenu() {
+
+        menu = new Menu();
+        menu.alpha = 0;
+        addChild(menu);
+        //Tween in menu
+        Starling.juggler.tween(menu, 0.25, {
+                    transition: Transitions.EASE_IN,
+                        delay: 0.0,
+                        alpha: 1.0
+        });
+    }
+	
+	public function showCredits() {
+        //Tween out the menu
+        Starling.juggler.tween(getChildAt(0), 0.25, {
+                    transition: Transitions.EASE_OUT,
+                        delay: 0.0,
+                        alpha: 0.0,
+                        onComplete: function() {
+                            removeChildAt(0,true);
+                        }
+        });
+        credits = new Credits();
+        credits.alpha = 0;
+        addChild(credits);
+        //Tween in xredits screen
+        Starling.juggler.tween(credits, 0.25, {
+                    transition: Transitions.EASE_IN,
+                        delay: .25,
+                        alpha: 1.0
+        });
     }
     
 	
@@ -448,10 +528,51 @@ class Root extends Sprite{
 			level5 = new Tilemap(Root.assets, "level5");
 			addChild(level5);
 			}
-			
-			
-			
-			
 	}
 
+}
+
+class Menu extends Sprite {
+    public var startButton:Button;
+    public var creditsButton:Button;
+    public var totalButtons:Int;
+    public var currentButton:Int;
+
+    public function new() {
+        super();
+        currentButton = 0;
+        //var title = new Image(Root.assets.getTexture("title"));
+        //title.x = .5*(flash.Lib.current.stage.stageWidth - title.width);
+        //title.y = 0;
+        //addChild(title);
+        startButton = new Button(Root.assets.getTexture("startbutton"), "", null, Root.assets.getTexture("startbutton_selected"));
+        startButton.name = "start";
+
+        startButton.x = .5*(flash.Lib.current.stage.stageWidth - startButton.width) ;
+        startButton.y = 400;
+        this.addChild(startButton);
+
+        creditsButton = new Button(Root.assets.getTexture("creditsbutton"), "", null, Root.assets.getTexture("creditsbutton_selected"));
+
+        creditsButton.x = .5*(flash.Lib.current.stage.stageWidth - startButton.width);
+        creditsButton.y = 450;
+
+        creditsButton.name = "credits";
+        this.addChild(creditsButton);
+
+    }
+}
+
+class Credits extends Sprite {
+
+    public var backButton:Button;
+
+    public function new() {
+        super();
+        backButton = new Button(Root.assets.getTexture("backbutton"), "", null, Root.assets.getTexture("backbutton_selected"));
+        backButton.name = "back";
+        backButton.x = 0;
+        backButton.y = 500;
+        this.addChild(backButton);
+    }
 }
