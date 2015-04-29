@@ -37,7 +37,7 @@ class Root extends Sprite{
 	
 		// Main level Bounds 
 		//right bounds 
-		var Bound1 = new Rectangle(659,229,25,122);
+		var Bound1 = new Rectangle(659,229,25,175);
 		var Bound2 = new Rectangle(994,162,26,65);
 		var Bound3 = new Rectangle(991,35,29,78);
 		var Bound4 = new Rectangle(657,405,28,121);
