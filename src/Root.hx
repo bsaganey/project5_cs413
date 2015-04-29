@@ -1,6 +1,5 @@
 import starling.display.Sprite;
 import starling.display.Button;
-//import starling.utils.deg2rad;
 import starling.utils.AssetManager;
 import starling.display.Image;
 import starling.core.Starling;
@@ -16,6 +15,7 @@ import starling.textures.Texture;
 
 import Tilemap;
 import Bounds;
+import Math;
 
 class Root extends Sprite{
 
@@ -174,24 +174,24 @@ class Root extends Sprite{
 								function(event:KeyboardEvent){
 								//trace(event.keyCode);
 								if (event.keyCode == Keyboard.LEFT) {
-									//ninja.rotation = deg2rad(270);
+									ninja.rotation = (3*Math.PI/2);
 									ninja.x -= 10;
 									//leveloneBoundsR(ninja);
 									
 								}
 								
 								if (event.keyCode == Keyboard.RIGHT) {
-									//ninja.rotation = deg2rad(90);
+									ninja.rotation = (Math.PI/2);
 									ninja.x += 10;
 									//leveloneBoundsL(ninja);
 								}
 								if (event.keyCode == Keyboard.UP) {
-									//ninja.rotation = deg2rad(0);
+									ninja.rotation = (0);
 									ninja.y -= 10;
 									leveloneBoundsUP(ninja);
 								}
 								if (event.keyCode == Keyboard.DOWN) {
-									//ninja.rotation = deg2rad(180);
+									ninja.rotation = (Math.PI);
 									ninja.y += 10;
 									//leveloneBoundsD(ninja);
 								}
