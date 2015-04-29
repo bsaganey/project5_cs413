@@ -188,7 +188,7 @@ class Root extends Sprite{
 								if (event.keyCode == Keyboard.UP) {
 									ninja.rotation = (0);
 									ninja.y -= 10;
-									leveloneBoundsUP(ninja);
+									//leveloneBoundsUP(ninja);
 								}
 								if (event.keyCode == Keyboard.DOWN) {
 									ninja.rotation = (Math.PI);
