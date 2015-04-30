@@ -82,6 +82,18 @@ class Root extends Sprite{
 		var Bound35 = new Rectangle(0,0,0,0);
 		
 		var levelonePortal = new Rectangle(0,0,0,0);
+		var level2Portal = new Rectangle(0,0,0,0);
+		var level3Portal = new Rectangle(0,0,0,0);
+		var level4Portal = new Rectangle(0,0,0,0);
+		
+		var GoBackToMain = new Rectangle(0,0,0,0);
+		
+		var Door1 = new Rectangle(677,534,8,41);
+		var Door2 = new Rectangle(353,549,13,42);
+		var Door3 = new Rectangle(677,358,9,43);
+		var Door4 = new Rectangle(352,325,14,42);
+		var Door5 = new Rectangle(563,38,42,8);
+		
 
 		
 		
@@ -186,9 +198,83 @@ class Root extends Sprite{
 									leveloneBoundsD(ninja);
 								}
 								
-							if(checkCollision(ninja,levelonePortal)){
+							if(checkCollision(ninja,levelonePortal)||checkCollision(ninja,level2Portal)||
+							checkCollision(ninja,level3Portal)||checkCollision(ninja,level4Portal)){
 								ninja.x = 25;
 								ninja.y = 490;
+							}
+							
+							if(checkCollision(ninja, GoBackToMain)){
+									//right bounds 
+		                        Bound1 = new Rectangle(659,229,25,175);
+								Bound2 = new Rectangle(994,162,26,65);
+		Bound3 = new Rectangle(991,35,29,78);
+		Bound4 = new Rectangle(657,405,28,121);
+		Bound5 = new Rectangle(656,581,28,201);
+		
+		//left bounds
+		Bound6 = new Rectangle(354,68,25,249);
+		Bound7 = new Rectangle(353,372,26,169);
+		Bound8 = new Rectangle(354,598,25,136);
+		
+		// top bounds
+		Bound9 = new Rectangle(611,37,377,25);
+		Bound10 = new Rectangle(354,36,202,26);
+		
+		// bottom bounds
+		Bound11 = new Rectangle(690,229,331,25);
+		Bound12 = new Rectangle(384,706,272,33);
+		Bound13 = new Rectangle(385,724,272,54);
+		
+		Bound14 = new Rectangle(0,0,0,0);
+		Bound15 = new Rectangle(0,0,0,0);
+		Bound16 = new Rectangle(0,0,0,0);
+		Bound17 = new Rectangle(0,0,0,0);
+		Bound18 = new Rectangle(0,0,0,0);
+		Bound19 = new Rectangle(0,0,0,0);
+		Bound20 = new Rectangle(0,0,0,0);
+		Bound21 = new Rectangle(0,0,0,0);
+		Bound22 = new Rectangle(0,0,0,0);
+		Bound23 = new Rectangle(0,0,0,0);
+		Bound24 = new Rectangle(0,0,0,0);
+		Bound25 = new Rectangle(0,0,0,0);
+		Bound26 = new Rectangle(0,0,0,0);
+			
+		Bound27 = new Rectangle(0,0,0,0);
+		Bound28 = new Rectangle(0,0,0,0);
+		Bound29 = new Rectangle(0,0,0,0);
+		Bound30 = new Rectangle(0,0,0,0);
+		Bound31 = new Rectangle(0,0,0,0);
+		Bound32 = new Rectangle(0,0,0,0);
+		Bound33 = new Rectangle(0,0,0,0);
+		Bound34 = new Rectangle(0,0,0,0);
+		Bound35 = new Rectangle(0,0,0,0);
+		
+		levelonePortal = new Rectangle(0,0,0,0);
+		level2Portal = new Rectangle(0,0,0,0);
+		level3Portal = new Rectangle(0,0,0,0);
+		level4Portal = new Rectangle(0,0,0,0);
+		
+		Door1 = new Rectangle(677,534,8,41);
+		Door2 = new Rectangle(353,549,13,42);
+		Door3 = new Rectangle(677,358,9,43);
+		Door4 = new Rectangle(352,325,14,42);
+		Door5 = new Rectangle(563,38,42,8);
+		
+		GoBackToMain = new Rectangle(0,0,0,0);
+							
+								
+								removeChild(levelone);
+								removeChild(leveltwo);
+								removeChild(level3);
+								removeChild(level4);
+								removeChild(level5);
+
+								addChild(tmxMain);
+								removeChild(ninja);
+								addChild(ninja);
+								ninja.x = 490;
+								ninja.y = 423;
 							}
 							
 							doorEnter(ninja);
@@ -365,12 +451,6 @@ class Root extends Sprite{
 	
 	public function doorEnter(Image){
 	
-		//677" y="534" width="8" height="41
-		var Door1 = new Rectangle(677,534,8,41);
-		var Door2 = new Rectangle(353,549,13,42);
-		var Door3 = new Rectangle(677,358,9,43);
-		var Door4 = new Rectangle(352,325,14,42);
-		var Door5 = new Rectangle(563,38,42,8);
 		
 		
 		if(checkCollision(Image, Door1)){
@@ -419,6 +499,8 @@ class Root extends Sprite{
 				level2Portal = new Rectangle(497,129,10,10);
 				level3Portal = new Rectangle(639,582,10,10);
 				level4Portal = new Rectangle(910,482,10,10);
+				
+				GoBackToMain = new Rectangle(1090,387,39,28);
 
 			removeChild(tmxMain);
 			levelone = new Tilemap(Root.assets, "levelone");
@@ -513,6 +595,7 @@ class Root extends Sprite{
 				Bound13 = new Rectangle(0,0,0,0);
 
 
+
 			
 			removeChild(tmxMain);
 			level4 = new Tilemap(Root.assets, "level4");
@@ -521,29 +604,66 @@ class Root extends Sprite{
 			
 						
 				if(checkCollision(Image, Door5)){
-			
-					//right bounds 
-				Bound1 = new Rectangle(0,0,0,0);
-				Bound2 = new Rectangle(0,0,0,0);
-				Bound3 = new Rectangle(0,0,0,0);
-				Bound4 = new Rectangle(0,0,0,0);
-				Bound5 = new Rectangle(0,0,0,0);
+									//right bounds 
+				Bound1 = new Rectangle(1269,510,21,165);
+				Bound2 = new Rectangle(605,630,669,46);
+				Bound3 = new Rectangle(762,497,496,46);
+				Bound4 = new Rectangle(464,201,138,473);
+				Bound5 = new Rectangle(607,205,93);
 		
 				//left bounds
-				Bound6 = new Rectangle(0,0,0,0);
-				Bound7 = new Rectangle(0,0,0,0);
-				Bound8 = new Rectangle(0,0,0,0);
+				Bound6 = new Rectangle(1267,16,18,472);
+				Bound7 = new Rectangle(239,16,1022,32);
+				Bound8 = new Rectangle(191,16,46,772);
 		
 				// top bounds
-				Bound9 = new Rectangle(0,0,0,0);
-				Bound10 = new Rectangle(0,0,0,0);
+				Bound9 = new Rectangle(244,764,751,44);
+				Bound10 = new Rectangle(997,686,39,125);
 		
 				// bottom bounds
-				Bound11 = new Rectangle(0,0,0,0);
+				Bound11 = new Rectangle(230,515,235,41);
 				Bound12 = new Rectangle(0,0,0,0);
 				Bound13 = new Rectangle(0,0,0,0);
-
-
+				
+				Bound14 = new Rectangle(0,0,0,0);
+				Bound15 = new Rectangle(0,0,0,0);
+				Bound16 = new Rectangle(0,0,0,0);
+				Bound17 = new Rectangle(0,0,0,0);
+				Bound18 = new Rectangle(0,0,0,0);
+				Bound19 = new Rectangle(0,0,0,0);
+				Bound20 = new Rectangle(0,0,0,0);
+				Bound21 = new Rectangle(0,0,0,0);
+				Bound22 = new Rectangle(0,0,0,0);
+				Bound23 = new Rectangle(0,0,0,0);
+				Bound24 = new Rectangle(0,0,0,0);
+				Bound25 = new Rectangle(0,0,0,0);
+				Bound26 = new Rectangle(0,0,0,0);
+			
+				Bound27 = new Rectangle(0,0,0,0);
+				Bound28 = new Rectangle(0,0,0,0);
+				Bound29 = new Rectangle(0,0,0,0);
+				Bound30 = new Rectangle(0,0,0,0);
+				Bound31 = new Rectangle(0,0,0,0);
+				Bound32 = new Rectangle(0,0,0,0);
+				Bound33 = new Rectangle(0,0,0,0);
+				Bound34 = new Rectangle(0,0,0,0);
+				Bound35 = new Rectangle(0,0,0,0);
+				
+				Door1 = new Rectangle(0,0,0,0);
+				Door2 = new Rectangle(0,0,0,0);
+				Door3 = new Rectangle(0,0,0,0);
+				Door4 = new Rectangle(0,0,0,0);
+				Door5 = new Rectangle(0,0,0,0);
+		
+				levelonePortal = new Rectangle(0,0,0,0);
+				level2Portal = new Rectangle(0,0,0,0);
+				level3Portal = new Rectangle(0,0,0,0);
+				level4Portal = new Rectangle(0,0,0,0);
+		
+				GoBackToMain = new Rectangle(386,457,28,18);
+				
+				Image.x = 1211;
+				Image.y = 571;
 			
 			removeChild(tmxMain);
 			level5 = new Tilemap(Root.assets, "level5");
