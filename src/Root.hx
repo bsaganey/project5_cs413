@@ -112,6 +112,9 @@ class Root extends Sprite{
 		assets.enqueue("assets/door3.png");
 		assets.enqueue("assets/doorDown.png");
 		assets.enqueue("assets/Bricks.png");
+		//sounds
+		assets.enqueue("assets/sounds/menuselect.mp3");
+		assets.enqueue("assets/sounds/doorenter.mp3");
 		
 		assets.enqueue("assets/tmxMain.tmx");
 		assets.enqueue("assets/levelone.tmx");
@@ -288,6 +291,7 @@ class Root extends Sprite{
 	
 	public function menuButtonClicked(event:Event) {
         var button = cast(event.target, Button);
+		Root.assets.playSound("menuselect");// play select sound on button click
         if(button.name == "start") {
             startGame();
         } 
@@ -451,7 +455,7 @@ class Root extends Sprite{
 	
 	public function doorEnter(Image){
 	
-		
+		Root.assets.playSound("doorenter");
 		
 		if(checkCollision(Image, Door1)){
 			
