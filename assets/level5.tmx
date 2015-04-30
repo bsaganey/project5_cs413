@@ -22,6 +22,9 @@
   <tile id="5">
    <image width="30" height="30" source="portal.png"/>
   </tile>
+  <tile id="6">
+   <image width="32" height="32" source="portal2.png"/>
+  </tile>
  </tileset>
  <layer name="brick" width="80" height="50">
   <data>
@@ -6391,7 +6394,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="6"/>
+   <tile gid="7"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
