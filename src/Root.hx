@@ -30,7 +30,7 @@ class Root extends Sprite{
 	//For the tilemap
 	var tmxMain:Tilemap;
 	var levelone:Tilemap;
-	var leveltwo:Tilemap;
+	var level2:Tilemap;
 	var level3:Tilemap;
 	var level4:Tilemap;
 	var level5:Tilemap;
@@ -115,6 +115,7 @@ class Root extends Sprite{
 		
 		assets.enqueue("assets/tmxMain.tmx");
 		assets.enqueue("assets/levelone.tmx");
+		assets.enqueue("assets/level2.tmx");
 
         assets.enqueue("assets/ninja.png");
         assets.enqueue("assets/portal.png");
@@ -126,6 +127,14 @@ class Root extends Sprite{
         assets.enqueue("assets/backbutton_selected.png");
         assets.enqueue("assets/creditsbutton.png");
         assets.enqueue("assets/creditsbutton_selected.png");
+		assets.enqueue("assets/portal_red.png");
+		assets.enqueue("assets/portal_blue.png");
+		assets.enqueue("assets/portal_green.png");
+		assets.enqueue("assets/portal_yellow.png");
+		assets.enqueue("assets/floor_red.png");
+		assets.enqueue("assets/floor_blue.png");
+		assets.enqueue("assets/floor_green.png");
+		assets.enqueue("assets/floor_yellow.png");
         
         assets.loadQueue(function onProgress(ratio:Float) {
 
@@ -265,7 +274,7 @@ class Root extends Sprite{
 							
 								
 								removeChild(levelone);
-								removeChild(leveltwo);
+								removeChild(level2);
 								removeChild(level3);
 								removeChild(level4);
 								removeChild(level5);
@@ -536,8 +545,8 @@ class Root extends Sprite{
 
 			
 			removeChild(tmxMain);
-			leveltwo = new Tilemap(Root.assets, "leveltwo");
-			addChild(leveltwo);
+			level2 = new Tilemap(Root.assets, "level2");
+			addChild(level2);
 			}
 						
 				if(checkCollision(Image, Door3)){
