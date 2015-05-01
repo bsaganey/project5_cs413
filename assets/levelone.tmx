@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-up" width="80" height="50" tilewidth="16" tileheight="16" nextobjectid="91">
- <tileset firstgid="1" name="tiles" tilewidth="30" tileheight="46">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="46">
   <tile id="0">
    <image width="30" height="30" source="Bricks.png"/>
    <objectgroup draworder="index">
@@ -12,6 +12,9 @@
   </tile>
   <tile id="2">
    <image width="30" height="30" source="portal.png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="portal2.png"/>
   </tile>
  </tileset>
  <layer name="brick" width="80" height="50">
@@ -2085,7 +2088,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="4"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="1"/>
