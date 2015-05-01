@@ -119,6 +119,7 @@ class Root extends Sprite{
 
         assets.enqueue("assets/ninja.png");
         assets.enqueue("assets/portal.png");
+		assets.enqueue("assets/portal2.png");
 		
 		assets.enqueue("assets/startbutton.png");
         assets.enqueue("assets/startbutton_selected.png");
